@@ -1,0 +1,468 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		52C3366419DB640F00286264 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C3366319DB640D00286264 /* UIKit.framework */; };
+		52C3366619DB640F00286264 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C3366519DB640F00286264 /* Foundation.framework */; };
+		52C3366819DB640F00286264 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C3366719DB640F00286264 /* CoreGraphics.framework */; };
+		52C3366E19DB641100286264 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52C3366C19DB641100286264 /* InfoPlist.strings */; };
+		52C3367019DB641100286264 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C3366F19DB641100286264 /* main.m */; };
+		52C3367419DB641100286264 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C3367319DB641100286264 /* AppDelegate.m */; };
+		52C3367619DB641200286264 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C3367519DB641200286264 /* Default.png */; };
+		52C3367819DB641200286264 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C3367719DB641200286264 /* Default@2x.png */; };
+		52C3367A19DB641200286264 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C3367919DB641200286264 /* Default-568h@2x.png */; };
+		52C3367D19DB641200286264 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C3367C19DB641200286264 /* ViewController.m */; };
+		52C3368019DB641300286264 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C3367E19DB641300286264 /* ViewController.xib */; };
+		52C3368819DB641700286264 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C3368719DB641600286264 /* SenTestingKit.framework */; };
+		52C3368919DB641700286264 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C3366319DB640D00286264 /* UIKit.framework */; };
+		52C3368A19DB641700286264 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C3366519DB640F00286264 /* Foundation.framework */; };
+		52C3369219DB641700286264 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52C3369019DB641700286264 /* InfoPlist.strings */; };
+		52C3369519DB641700286264 /* NyimboZaKristoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C3369419DB641700286264 /* NyimboZaKristoTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		52C3368B19DB641700286264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52C3365819DB640500286264 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52C3365F19DB640A00286264;
+			remoteInfo = NyimboZaKristo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		52C3366019DB640D00286264 /* NyimboZaKristo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NyimboZaKristo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		52C3366319DB640D00286264 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		52C3366519DB640F00286264 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		52C3366719DB640F00286264 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		52C3366B19DB641100286264 /* NyimboZaKristo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NyimboZaKristo-Info.plist"; sourceTree = "<group>"; };
+		52C3366D19DB641100286264 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		52C3366F19DB641100286264 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		52C3367119DB641100286264 /* NyimboZaKristo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NyimboZaKristo-Prefix.pch"; sourceTree = "<group>"; };
+		52C3367219DB641100286264 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		52C3367319DB641100286264 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		52C3367519DB641200286264 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		52C3367719DB641200286264 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		52C3367919DB641200286264 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		52C3367B19DB641200286264 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		52C3367C19DB641200286264 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		52C3367F19DB641300286264 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		52C3368619DB641600286264 /* NyimboZaKristoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NyimboZaKristoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52C3368719DB641600286264 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		52C3368F19DB641700286264 /* NyimboZaKristoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NyimboZaKristoTests-Info.plist"; sourceTree = "<group>"; };
+		52C3369119DB641700286264 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		52C3369319DB641700286264 /* NyimboZaKristoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NyimboZaKristoTests.h; sourceTree = "<group>"; };
+		52C3369419DB641700286264 /* NyimboZaKristoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NyimboZaKristoTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		52C3365D19DB640A00286264 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52C3366419DB640F00286264 /* UIKit.framework in Frameworks */,
+				52C3366619DB640F00286264 /* Foundation.framework in Frameworks */,
+				52C3366819DB640F00286264 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52C3368219DB641600286264 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52C3368819DB641700286264 /* SenTestingKit.framework in Frameworks */,
+				52C3368919DB641700286264 /* UIKit.framework in Frameworks */,
+				52C3368A19DB641700286264 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		52C3365719DB640500286264 = {
+			isa = PBXGroup;
+			children = (
+				52C3366919DB641000286264 /* NyimboZaKristo */,
+				52C3368D19DB641700286264 /* NyimboZaKristoTests */,
+				52C3366219DB640D00286264 /* Frameworks */,
+				52C3366119DB640D00286264 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		52C3366119DB640D00286264 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				52C3366019DB640D00286264 /* NyimboZaKristo.app */,
+				52C3368619DB641600286264 /* NyimboZaKristoTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		52C3366219DB640D00286264 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				52C3366319DB640D00286264 /* UIKit.framework */,
+				52C3366519DB640F00286264 /* Foundation.framework */,
+				52C3366719DB640F00286264 /* CoreGraphics.framework */,
+				52C3368719DB641600286264 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		52C3366919DB641000286264 /* NyimboZaKristo */ = {
+			isa = PBXGroup;
+			children = (
+				52C3367219DB641100286264 /* AppDelegate.h */,
+				52C3367319DB641100286264 /* AppDelegate.m */,
+				52C3367B19DB641200286264 /* ViewController.h */,
+				52C3367C19DB641200286264 /* ViewController.m */,
+				52C3367E19DB641300286264 /* ViewController.xib */,
+				52C3366A19DB641100286264 /* Supporting Files */,
+			);
+			path = NyimboZaKristo;
+			sourceTree = "<group>";
+		};
+		52C3366A19DB641100286264 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				52C3366B19DB641100286264 /* NyimboZaKristo-Info.plist */,
+				52C3366C19DB641100286264 /* InfoPlist.strings */,
+				52C3366F19DB641100286264 /* main.m */,
+				52C3367119DB641100286264 /* NyimboZaKristo-Prefix.pch */,
+				52C3367519DB641200286264 /* Default.png */,
+				52C3367719DB641200286264 /* Default@2x.png */,
+				52C3367919DB641200286264 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		52C3368D19DB641700286264 /* NyimboZaKristoTests */ = {
+			isa = PBXGroup;
+			children = (
+				52C3369319DB641700286264 /* NyimboZaKristoTests.h */,
+				52C3369419DB641700286264 /* NyimboZaKristoTests.m */,
+				52C3368E19DB641700286264 /* Supporting Files */,
+			);
+			path = NyimboZaKristoTests;
+			sourceTree = "<group>";
+		};
+		52C3368E19DB641700286264 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				52C3368F19DB641700286264 /* NyimboZaKristoTests-Info.plist */,
+				52C3369019DB641700286264 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		52C3365F19DB640A00286264 /* NyimboZaKristo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52C3369819DB641800286264 /* Build configuration list for PBXNativeTarget "NyimboZaKristo" */;
+			buildPhases = (
+				52C3365C19DB640A00286264 /* Sources */,
+				52C3365D19DB640A00286264 /* Frameworks */,
+				52C3365E19DB640A00286264 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NyimboZaKristo;
+			productName = NyimboZaKristo;
+			productReference = 52C3366019DB640D00286264 /* NyimboZaKristo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		52C3368519DB641600286264 /* NyimboZaKristoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52C3369B19DB641800286264 /* Build configuration list for PBXNativeTarget "NyimboZaKristoTests" */;
+			buildPhases = (
+				52C3368119DB641600286264 /* Sources */,
+				52C3368219DB641600286264 /* Frameworks */,
+				52C3368319DB641600286264 /* Resources */,
+				52C3368419DB641600286264 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52C3368C19DB641700286264 /* PBXTargetDependency */,
+			);
+			name = NyimboZaKristoTests;
+			productName = NyimboZaKristoTests;
+			productReference = 52C3368619DB641600286264 /* NyimboZaKristoTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		52C3365819DB640500286264 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = Nelson;
+			};
+			buildConfigurationList = 52C3365B19DB640500286264 /* Build configuration list for PBXProject "NyimboZaKristo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 52C3365719DB640500286264;
+			productRefGroup = 52C3366119DB640D00286264 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				52C3365F19DB640A00286264 /* NyimboZaKristo */,
+				52C3368519DB641600286264 /* NyimboZaKristoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		52C3365E19DB640A00286264 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52C3366E19DB641100286264 /* InfoPlist.strings in Resources */,
+				52C3367619DB641200286264 /* Default.png in Resources */,
+				52C3367819DB641200286264 /* Default@2x.png in Resources */,
+				52C3367A19DB641200286264 /* Default-568h@2x.png in Resources */,
+				52C3368019DB641300286264 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52C3368319DB641600286264 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52C3369219DB641700286264 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		52C3368419DB641600286264 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		52C3365C19DB640A00286264 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52C3367019DB641100286264 /* main.m in Sources */,
+				52C3367419DB641100286264 /* AppDelegate.m in Sources */,
+				52C3367D19DB641200286264 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52C3368119DB641600286264 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52C3369519DB641700286264 /* NyimboZaKristoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		52C3368C19DB641700286264 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52C3365F19DB640A00286264 /* NyimboZaKristo */;
+			targetProxy = 52C3368B19DB641700286264 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		52C3366C19DB641100286264 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52C3366D19DB641100286264 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		52C3367E19DB641300286264 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52C3367F19DB641300286264 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+		52C3369019DB641700286264 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52C3369119DB641700286264 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		52C3369619DB641700286264 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		52C3369719DB641700286264 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		52C3369919DB641800286264 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NyimboZaKristo/NyimboZaKristo-Prefix.pch";
+				INFOPLIST_FILE = "NyimboZaKristo/NyimboZaKristo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		52C3369A19DB641800286264 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NyimboZaKristo/NyimboZaKristo-Prefix.pch";
+				INFOPLIST_FILE = "NyimboZaKristo/NyimboZaKristo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		52C3369C19DB641800286264 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/NyimboZaKristo.app/NyimboZaKristo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NyimboZaKristo/NyimboZaKristo-Prefix.pch";
+				INFOPLIST_FILE = "NyimboZaKristoTests/NyimboZaKristoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		52C3369D19DB641800286264 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/NyimboZaKristo.app/NyimboZaKristo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NyimboZaKristo/NyimboZaKristo-Prefix.pch";
+				INFOPLIST_FILE = "NyimboZaKristoTests/NyimboZaKristoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		52C3365B19DB640500286264 /* Build configuration list for PBXProject "NyimboZaKristo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52C3369619DB641700286264 /* Debug */,
+				52C3369719DB641700286264 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52C3369819DB641800286264 /* Build configuration list for PBXNativeTarget "NyimboZaKristo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52C3369919DB641800286264 /* Debug */,
+				52C3369A19DB641800286264 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		52C3369B19DB641800286264 /* Build configuration list for PBXNativeTarget "NyimboZaKristoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52C3369C19DB641800286264 /* Debug */,
+				52C3369D19DB641800286264 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 52C3365819DB640500286264 /* Project object */;
+}
