@@ -28,7 +28,7 @@
     _navigationController = [[NavigationViewController alloc]
                              initWithRootViewController:_mainViewController];
     _window.rootViewController = _navigationController;
-
+    
     [self setNavigationBarBg];
     
     [_window makeKeyAndVisible];
@@ -44,7 +44,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
@@ -66,11 +66,7 @@
 //Called for setting the ui that will be used for top bar in all views
 - (void)setNavigationBarBg
 {
-
     
-//    UIImage *img = [UIImage imageNamed:@"action_bar_barground.png"];
-//    
-//    
     NSString *postFix = @".png";
     
     
@@ -92,7 +88,7 @@
         [_navigationController.navigationBar insertSubview:imageView atIndex:0];
     }
     _navigationController.navigationBar.barStyle = UIBarStyleBlack;
-
+    
 }
 
 @end

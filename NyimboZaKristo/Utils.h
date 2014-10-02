@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Utils : NSObject
+
 + (NSData*)readFileData:(NSString *)name type: (NSString *)type;
 
 @end

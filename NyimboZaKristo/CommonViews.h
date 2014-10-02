@@ -25,4 +25,8 @@
                         image:(UIImage *)image
                  imagePressed:(UIImage *)imagePressed
                 darkTextColor:(BOOL)darkTextColor;
++ (UIView *)titleView:(NSString *)title;
++ (UIBarButtonItem *)layoutActionBarButtons:(id)target
+                                       home:(BOOL)home
+                                   signedIn:(BOOL)signedIn orientation:(UIInterfaceOrientation)orientation;
 @end
