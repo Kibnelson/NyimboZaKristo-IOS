@@ -78,11 +78,16 @@
     }
     
     [self.view addSubview:[CommonViews imageView:@"activity_background.png" frame:CGRectMake(0.0f, - navigationController.navigationBar.bounds.size.height, screenRect.size.width, screenRect.size.height ) topInset:0 leftInset:0 bottomInset:0 rightInset:0]];
+    //Load raw file that has the songs
+    JSONDecoder *jsonDecoder = [[JSONDecoder alloc] init];
+    NSData *jsonData = [Utils readFileData:@"local_songs" type:@"json"];
+    self.dataArray = [jsonDecoder objectWithData:jsonData];
     
+
    
     [self.view addSubview:[self createActivateViews]];
     
-    
+    [self createTableView];
 }
 
 - (UIView*) createActivateViews {
@@ -153,10 +158,72 @@
 }
 
 - (void) listAllButtonClicked {
-       
+    
+    self.txnsArray=nil;
+    if(self.pointOfSearch==1){ // do a local Search
+        self.txnsArray = self.dataArray;
+        
+        [tableView reloadData];
+        tableView.hidden=NO;
+    }
+    else{//list all from online
+        
+    }
+    
 }
 - (void) searchButtonClicked {
-       
+    NSMutableString* errorMsg = [NSMutableString string];
+    Boolean valid = true;
+    
+    UITextField *searchField = (UITextField *)[self.view viewWithTag:TAG_SEARCH_FIELD];
+    
+    NSString *searchFieldStr = searchField.text;
+    if([searchFieldStr length] == 0 ){
+        valid = false;
+        [errorMsg appendString:@"Please enter a search value\n"];
+    }
+    
+    if(valid){
+        
+        searchField.text =@"";
+        self.txnsArray=nil;
+        if(self.pointOfSearch==1){ // do a local Search
+            NSMutableArray *comboDataArray = [[NSMutableArray alloc] init];
+            for(NSDictionary *data in self.dataArray){
+                NSString *title=[data objectForKey:@"Title"];
+                NSString *songNo=[data objectForKey:@"No"];
+                if(([title rangeOfString:searchFieldStr].location !=NSNotFound)||([songNo rangeOfString:searchFieldStr].location !=NSNotFound))
+                {// match found load the list
+                    [comboDataArray addObject:data];
+                }
+                
+            }
+            
+            if([comboDataArray count]>0){
+                
+                tableView.hidden=YES;
+                self.txnsArray = comboDataArray;
+                [tableView reloadData];
+                tableView.hidden=NO;
+                
+            } else {
+                self.txnsArray = nil;
+                [tableView reloadData];
+                tableView.hidden=YES;
+                [NavigationViewController showMessage:@"There is no song matching your search criteria, try again." title:@"Info"];
+            }
+            
+            
+        }else{ // Do an online search of the song
+            
+            
+        }
+        
+    }else{
+        [NavigationViewController showMessage:errorMsg title:@"Validation Error"];
+    }
+    
+   
 }
 
 -(void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -194,6 +261,94 @@
     }
 }
 
+- (void) createTableView {
+    
+    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+    
+    tableView = [[UITableView alloc] initWithFrame:CGRectMake(LAYOUT_LEFT_OUTER_X_POS, LAYOUT_Y_POSITION_AFTER_TITLE*4, screenRect.size.width-(LAYOUT_STANDARD_VIEW_MARGIN_IPHONE*2), (screenRect.size.height - navigationController.navigationBar.bounds.size.height - (LAYOUT_Y_POSITION_AFTER_TITLE-LAYOUT_TOP_MARGIN)) - LAYOUT_BACKGROUND_MARGIN_IPHONE - (LAYOUT_TOP_MARGIN + LAYOUT_BOTTOM_MARGIN)) style:UITableViewStylePlain];
+    
+    [tableView addObserver:self forKeyPath:@"contentSize" options:0 context:NULL];
+    
+    tableView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.backgroundColor = [UIColor clearColor];
+    tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    [tableView reloadData];
+    
+    [self.view addSubview: tableView];
+    
+    tableView.hidden=YES;
+    
+    
+    
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    
+    CGRect frame= tableView.frame;
+    frame.size=tableView.contentSize;
+    if(self.txnsArray.count>6)
+        tableView.frame=frame;
+    
+    
+}
+#pragma mark UITableViewDataSource methods
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger) section {
+    return self.txnsArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = nil;
+    UILabel *titleLabel, *songNo;
+    
+    static NSString *mmReuseRowIdentifier = @"ReuseRowIdentifier";
+    cell = [tableView dequeueReusableCellWithIdentifier:mmReuseRowIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]
+                initWithStyle:UITableViewCellStyleDefault reuseIdentifier:mmReuseRowIdentifier];
+        
+        titleLabel = [CommonViews labelView:@"" frame:CGRectMake(20.0, 0.0, 300.0, 20.0)];
+        titleLabel.tag=TAG_TITLE_LABEL;
+        [cell.contentView addSubview:titleLabel];
+        
+        songNo = [CommonViews labelView:@"" frame:CGRectMake(0.0, 0.0, 300.0, 20.0)];
+        songNo.tag=TAG_NO_LABEL;
+        [cell.contentView addSubview:songNo];
+    } else {
+        titleLabel = (UILabel *)[cell.contentView viewWithTag:TAG_TITLE_LABEL];
+        songNo = (UILabel *)[cell.contentView viewWithTag:TAG_NO_LABEL];
+    }
+    
+    NSDictionary *currentTxn = [self.txnsArray objectAtIndex:indexPath.row];
+    
+    songNo.text = [currentTxn objectForKey:@"No"];
+    titleLabel.text = [currentTxn objectForKey:@"Title"];
+    
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    
+    return cell;
+}
+#pragma mark UITableViewDelegate methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    NavigationViewController *navigationController = (NavigationViewController*)self.parentViewController;
+    
+    SongViewController *songViewController = [[SongViewController alloc] initWithData:[self.txnsArray objectAtIndex:indexPath.row] pointOfSearch:self.pointOfSearch ];
+    
+    [navigationController pushViewController:songViewController animated:YES];
+    self.txnsArray = nil;
+    
+    [tableView reloadData];
+    tableView.hidden=YES;
+    
+}
 
 - (void)didReceiveMemoryWarning
 {
