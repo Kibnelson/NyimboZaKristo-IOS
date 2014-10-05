@@ -15,6 +15,7 @@
 #import "JSONKit.h"
 #import "TPKeyBoardAvoidingScrollView.h"
 #import "SongViewController.h"
+#import "SongsRequestHandler.h"
 
 
 @interface MainViewController ()
@@ -28,7 +29,7 @@
 @property (nonatomic, assign) UIButton *searchButton;
 @property (nonatomic, assign) UIButton *searchAllButton;
 @property (nonatomic, assign) UIButton *searchFieldButton;
-
+@property (nonatomic, strong)  SongsRequestHandler *songsRequestHandler;
 
 @end
 
@@ -78,18 +79,18 @@
     }
     
     [self.view addSubview:[CommonViews imageView:@"activity_background.png" frame:CGRectMake(0.0f, - navigationController.navigationBar.bounds.size.height, screenRect.size.width, screenRect.size.height ) topInset:0 leftInset:0 bottomInset:0 rightInset:0]];
-    //Load raw file that has the songs
-    JSONDecoder *jsonDecoder = [[JSONDecoder alloc] init];
-    NSData *jsonData = [Utils readFileData:@"local_songs" type:@"json"];
-    self.dataArray = [jsonDecoder objectWithData:jsonData];
     
-
-   
     [self.view addSubview:[self createActivateViews]];
     
     [self createTableView];
 }
-
+-(void) fetchLocalSongs{
+    //Load raw file that has the songs
+    JSONDecoder *jsonDecoder = [[JSONDecoder alloc] init];
+    NSData *jsonData = [Utils readFileData:@"local_songs" type:@"json"];
+    self.dataArray = [jsonDecoder objectWithData:jsonData];
+   
+}
 - (UIView*) createActivateViews {
     
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
@@ -161,15 +162,26 @@
     
     self.txnsArray=nil;
     if(self.pointOfSearch==1){ // do a local Search
+        [self fetchLocalSongs];
         self.txnsArray = self.dataArray;
         
         [tableView reloadData];
         tableView.hidden=NO;
     }
     else{//list all from online
-        
+        [navigationController clearPayload];
+        [navigationController putPayload:@"All" key:@"sSearch"];
+        [self setSongsRequestHandler: [SongsRequestHandler alloc]];
+        [self.songsRequestHandler initWithPayload:navigationController.payloadDictionaryInnerLevel navigationController:navigationController viewController:self];
     }
     
+}
+- (void) showServerData:(NSArray *)serverData {
+
+    tableView.hidden=YES;
+    self.txnsArray = serverData;
+    [tableView reloadData];
+    tableView.hidden=NO;
 }
 - (void) searchButtonClicked {
     NSMutableString* errorMsg = [NSMutableString string];
@@ -188,6 +200,7 @@
         searchField.text =@"";
         self.txnsArray=nil;
         if(self.pointOfSearch==1){ // do a local Search
+            [self fetchLocalSongs];
             NSMutableArray *comboDataArray = [[NSMutableArray alloc] init];
             for(NSDictionary *data in self.dataArray){
                 NSString *title=[data objectForKey:@"Title"];
@@ -215,7 +228,10 @@
             
             
         }else{ // Do an online search of the song
-            
+            [navigationController clearPayload];
+            [navigationController putPayload:searchFieldStr key:@"sSearch"];
+            [self setSongsRequestHandler: [SongsRequestHandler alloc]];
+            [self.songsRequestHandler initWithPayload:navigationController.payloadDictionaryInnerLevel navigationController:navigationController viewController:self];
             
         }
         
@@ -225,7 +241,15 @@
     
    
 }
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    UIApplication* application = [UIApplication sharedApplication];
+    
+    [self adjustLayout:application.statusBarOrientation];
+    
+    
+}
 -(void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     
     self.navigationItem.titleView = [CommonViews logo:toInterfaceOrientation];
@@ -288,10 +312,6 @@
     
     CGRect frame= tableView.frame;
     frame.size=tableView.contentSize;
-    if(self.txnsArray.count>6)
-        tableView.frame=frame;
-    
-    
 }
 #pragma mark UITableViewDataSource methods
 

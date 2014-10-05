@@ -20,10 +20,7 @@
 
 //Function that initializes the class, creates the payload dictionary that is used to pass prameters to the server e.g. for search a song
 -(id)initWithRootViewController:(UIViewController*)viewController{
-    _payloadDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"AP5", @"api_key", @"WHH", @"api_secret", nil];
-    _payloadDictionaryInnerLevel = [NSMutableDictionary dictionary];
-    [_payloadDictionary setObject:_payloadDictionaryInnerLevel forKey:@"payload"];
-    
+     _payloadDictionaryInnerLevel = [NSMutableDictionary dictionary];
     return [super initWithRootViewController:viewController];
 }
 

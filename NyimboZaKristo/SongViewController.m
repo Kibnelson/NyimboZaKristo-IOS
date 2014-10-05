@@ -21,7 +21,8 @@
 @property (nonatomic, assign)  CGFloat standardWidth;
 @property (nonatomic, assign)  BOOL songPaused;
 @property (nonatomic, assign) NSString *songNo;
-@property (nonatomic, assign) NSString *songURL;
+@property (nonatomic, assign) NSString *songAudioURL;
+@property (nonatomic, assign) NSString *songVideoURL;
 @property (nonatomic, assign) NSInteger *pointOfSearch;
 @property (nonatomic, strong) NavigationViewController *navigationController;
 @property (nonatomic, strong) UIBarButtonItem *uIBarButtonItem;
@@ -59,7 +60,8 @@
     
     self.songPaused=NO;
     self.songNo=[self.songDetails objectForKey:@"No"];
-    self.songURL=[self.songDetails objectForKey:@"url"];
+    self.songVideoURL=[self.songDetails objectForKey:@"Video"];
+    self.songAudioURL=[self.songDetails objectForKey:@"Audio"];
     NSString *str=self.songNo;
     str=[str stringByAppendingString:@" "];
     str=[str stringByAppendingString:[self.songDetails objectForKey:@"Title"]];
@@ -84,11 +86,10 @@
     
     uIBarButtonItem=[CommonViews layoutActionBarButtons:self home:YES signedIn:YES orientation: application.statusBarOrientation ];
     
-    // NSLog(@"-------%@",self.pointOfSearch);
+    self.navigationItem.rightBarButtonItem=nil;
     
     [self.view addSubview:[self createViews]];
-    
-    //    [self createViews];
+
     
 }
 - (UIView*) createViews {
@@ -107,7 +108,12 @@
     
     
     text =[[UITextView alloc] initWithFrame: CGRectMake(LAYOUT_LEFT_INNER_X_POS, LAYOUT_LEVEL_2_VIEW_START_Y_POS+15, 300.0f, 300)];
-    [text setText:[self.songDetails objectForKey:@"Song"]];
+    NSString *songString = [self.songDetails objectForKey:@"Song"];
+    
+    songString = [songString stringByReplacingOccurrencesOfString:@"space"
+                                         withString:@"\n\n"];
+    
+    [text setText:songString];
     
     text.backgroundColor= [UIColor clearColor];
     text.editable=NO;
@@ -124,22 +130,18 @@
     
     mediaButton=[CommonViews buttonWithTitle:@"" target:self selector:@selector(playSound) frame:CGRectMake(80.0f, (LAYOUT_VIEW_HEIGHT+LAYOUT_VERTICAL_SPACING)*10, 40, 40) image:image imagePressed:imagePressed darkTextColor:NO];
     
-    
     UIImage *imagePause = [UIImage imageNamed:@"pause"];
     
     pauseButton=[CommonViews buttonWithTitle:@"" target:self selector:@selector(pauseSound) frame:CGRectMake(140.0f, (LAYOUT_VIEW_HEIGHT+LAYOUT_VERTICAL_SPACING)*10, 40, 40) image:imagePause imagePressed:imagePressed darkTextColor:NO];
     
-    UIImage *imagePlayVideo = [UIImage imageNamed:@"video"];
+    UIImage *imagePlayVideo = [UIImage imageNamed:@"Video"];
     
     videoButton=[CommonViews buttonWithTitle:nil target:self selector:@selector(playVideo) frame:CGRectMake(190.0f, (LAYOUT_VIEW_HEIGHT+LAYOUT_VERTICAL_SPACING)*10,40, 40) image:imagePlayVideo imagePressed:imagePressed darkTextColor:NO];
     
     [self.view addSubview:mediaButton];
     [self.view addSubview:pauseButton];
     [self.view addSubview:videoButton];
-    
-    
-    
-    
+
     return containerView;
 }
 
@@ -156,14 +158,12 @@
 }
 - (void)adjustLayout:(UIInterfaceOrientation)toInterfaceOrientation {
     
-    self.navigationItem.rightBarButtonItem=nil;
+    
     UIView *scrollView = (UIView *)[self.view viewWithTag:TAG_SCROLL_VIEW];
     
     if(toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown){
         for(UIView *currentView in scrollView.subviews){
             if([currentView isKindOfClass:[UITextView class]]){
-                
-                
                 currentView.frame = CGRectMake(0.0f, currentView.frame.origin.y, currentView.frame.size.width, currentView.frame.size.height);
             }
         }
@@ -173,16 +173,14 @@
         pauseButton.frame=CGRectMake(140.0f, (LAYOUT_VIEW_HEIGHT+LAYOUT_VERTICAL_SPACING)*10, 40, 40);
         videoButton.frame=CGRectMake(190.0f, (LAYOUT_VIEW_HEIGHT+LAYOUT_VERTICAL_SPACING)*10, 40, 40);
         
-        
     }else{
         
         mediaButton.frame=CGRectMake(140.0f, (LAYOUT_VIEW_HEIGHT+LAYOUT_VERTICAL_SPACING)*6, 40, 40);
         pauseButton.frame=CGRectMake(200.0f, (LAYOUT_VIEW_HEIGHT+LAYOUT_VERTICAL_SPACING)*6, 40, 40);
         videoButton.frame=CGRectMake(260.0f, (LAYOUT_VIEW_HEIGHT+LAYOUT_VERTICAL_SPACING)*6, 40, 40);
+        
         for(UIView *currentView in scrollView.subviews){
             if([currentView isKindOfClass:[UITextView class]]){
-                
-                
                 currentView.frame = CGRectMake(100.0f, currentView.frame.origin.y, currentView.frame.size.width, currentView.frame.size.height);
             }
         }
@@ -191,9 +189,9 @@
 - (void)playVideo{
     
     
-    NSString *preFix =[NSString stringWithFormat:@"%@%@", @"song_video_", self.songNo];
-    NSString *path = [[NSBundle mainBundle] pathForResource:preFix ofType:@"mp4"];
-    
+    NSString *path = [[NSBundle mainBundle] pathForResource:self.songVideoURL ofType:@"mp4"];
+    if(self.pointOfSearch==2)
+        path=@"";
     if(path !=nil){
         
         if(self.pointOfSearch==1){
@@ -201,7 +199,8 @@
             myVideoPlayer.movieSourceType=MPMovieSourceTypeFile;
         }
         else{
-            myVideoPlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:self.songURL]];
+       
+            myVideoPlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:self.songVideoURL]];
             myVideoPlayer.movieSourceType=MPMovieSourceTypeStreaming;
         }
         [myVideoPlayer prepareToPlay];
@@ -246,15 +245,12 @@
             {
                 [myAudioPlayer stop];
                 myAudioPlayer=nil;
-                
+
             }
             else
             {
                 NSError *error;
-                NSString *preFix =[NSString stringWithFormat:@"%@%@", @"song_", self.songNo];
-                
-                
-                NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:preFix ofType:@"mp3"];
+                NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:self.songAudioURL ofType:@"mp3"];
                 
                 if(self.pointOfSearch==1){
                     
@@ -264,16 +260,13 @@
                     }
                 }
                 else{
-                    //Sample video for testing
-                    //                        NSString *resoucePath=@"http://www.chiptape.com/chiptape/sounds/long/_sweet.mp3";
-                    
-                    NSData *objectData=[NSData dataWithContentsOfURL:[NSURL URLWithString:self.songURL]];
+
+                    NSData *objectData=[NSData dataWithContentsOfURL:[NSURL URLWithString:self.songAudioURL]];
                     
                     myAudioPlayer =[[AVAudioPlayer alloc] initWithData:objectData error:&error];
                     soundFilePath=@"test";
                 }
-            
-                if(soundFilePath !=nil){
+                if(soundFilePath !=nil && !error){
                     
                     myAudioPlayer.numberOfLoops=-1;
                     myAudioPlayer.volume=1.0f;
@@ -287,7 +280,6 @@
                     [navigationController showToastMessage:@"The selected song has no audio available."];
                     
                 }
-                
             }
         } else{
             [myAudioPlayer stop];

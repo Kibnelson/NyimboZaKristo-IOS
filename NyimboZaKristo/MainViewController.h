@@ -14,5 +14,5 @@
 
 @property   (nonatomic, strong)  UITableView *tableView;
 @property   (nonatomic, strong)  NavigationViewController *navigationController;
-
+- (void)showServerData:(NSArray*)data;
 @end

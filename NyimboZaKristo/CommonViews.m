@@ -16,11 +16,11 @@
     CGRect frame;
     UIImage *img;
     if(orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown){
-        frame = CGRectMake(0, 0, 201, 60);
-        img = [UIImage imageNamed:@"logo.png"];
+        frame = CGRectMake(0, 15, 140, 55);
+        img = [UIImage imageNamed:@"logoImage.png"];
     }else{
-        frame = CGRectMake(0, 0, 114, 34);
-        img = [UIImage imageNamed:@"logo.png"];
+        frame = CGRectMake(0, 15, 140, 34);
+        img = [UIImage imageNamed:@"logoImage.png"];
     }
     UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
     imageView.frame = frame;
